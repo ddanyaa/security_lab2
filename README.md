@@ -1,32 +1,5 @@
-# ELK Stack by Бор, Ленинг, Правой Б9118-09.03.04прогин
-## Оглавление
-
-  - [Squid](#squid)
-    - [Установка](#установка)
-    - [Настройка](#настройка)
-    - [Apache](#apache)
-    - [Запуск сервера](#запуск-сервера)
-    - [Curl](#curl)
-  - [Elasticsearch](#elasticsearch)
-    - [Установка Java](#установка-java)
-    - [Установка Elasticsearch](#установка-elasticsearch)
-    - [Настройка Elasticsearch](#настройка-elasticsearch)
-    - [Создание пользователей](#создание-пользователей)
-    - [Запуск Elasticsearch](#запуск-elasticsearch)
-  - [Kibana](#kibana)
-    - [Установка Kibana](#установка-kibana)
-    - [Настройка Kibana](#настройка-kibana)
-    - [Добавление пароля](#добавление-пароля)
-    - [Запуск Kibana](#запуск-kibana)
-  - [Logstash](#logstash)
-    - [Установка Logstash](#установка-logstash)
-    - [Настройка Logstash](#настройка-logstash)
-    - [Запуск Logstash](#запуск-logstash)
-  - [Filebeat](#filebeat)
-    - [Установка Filebeat](#установка-fileneat)
-    - [Настройка Filebeat](#настройка-filebeat)
-    - [Запуск Filebeat](#запуск-filebeat)
-  - [GROK](#grok)
+# Лабораторная №2
+## Выполнили: Давиденко Дарья, Нечухаева Яна, Туреев Содном, группа Б9118-09.03.04прогин
 
 ---
 
