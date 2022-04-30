@@ -3,81 +3,75 @@
 
 ---
 
-## Squid
-### Установка
+## Установка и настройка Squid proxy
+Сначала устанавливаем squid для дальнейшего использования в качестве прокси-сервера с помощью следующей команды:
 
 ```properties
-sudo apt update
 sudo apt install squid
 ```
 
-### Настройка
+После установки, squid необходимо настроить. Для этого открывем файл .conf с помощью следующей команды:
 
 ```properties
 sudo nano /etc/squid/squid.conf
 ```
 
-В открытом файле необходимо нажать `Ctrl+W` и написать `include /etc/squid/conf.d/*`.
+В открытом файле необходимо нажать `Ctrl+W` для того, чтобы чтобы найти необходимое место и прописать:
 
-В найденном месте необходимо ниже добавить строчки:
-1. `auth_param basic program /usr/lib/squid3/basic_ncsa_auth /etc/squid/passwords`
-2. `auth_param basic realm proxy`
-3. `acl authenticated proxy_auth REQUIRED`
-4. `acl localnet src *ip_adress*`, где `*ip_adress*` - ip адрес локальной машины.
-5. `http_access allow authenticated`
+`include /etc/squid/conf.d/*`.
 
-После чего сохраняем файл `(Ctrl+X Y Enter)`
+В найденном месте необходимо ниже добавить строчки и поле сохранить измененный файл:
+ `auth_param basic program /usr/lib/squid3/basic_ncsa_auth /etc/squid/passwords`
+ `auth_param basic realm proxy`
+ `acl authenticated proxy_auth REQUIRED`
+ `acl localnet src *ip_adress*`, где `*ip_adress*` - ip адрес локальной машины.
+ `http_access allow authenticated`
+ ![squid](https://user-images.githubusercontent.com/91045595/166097976-d1335246-0b82-45aa-888f-a9216703c2da.jpg)
 
-### Apache
 
+### Установка Apache 
+Устанавливаем Apache для дальнейшего осуществления передачи данных при запросе и настраиваем аутентифиуацию по паролю
 ```properties
 sudo apt install apache2-utils
 sudo htpasswd -c /etc/squid/passwords *squid_username*
 ```
 
 ### Запуск сервера
-
+По умолчанию squid слушает 3128 порт
 ```properties
 sudo systemctl start squid
 sudo systemctl enable squid
 sudo ufw allow 3128
 ```
+Видим, что прокси успешно работает:
+![Сингапур](https://user-images.githubusercontent.com/91045595/166098143-ee66369c-ccdb-4f36-8e35-db8b2d6537e1.jpg)
 
-### Curl
-
-Проверим работоспособность
-
-```properties
-sudo curl -v -x http://__squid_username__:__squid_password__@ip:3128 http://instagram.com
-```
-
----
 
 ## Elasticsearch
 
 ### Установка Java
-
+Установим Java с помощью следующих команд:
 ```properties
 sudo apt update
 sudo apt install default-jre
 sudo apt install default-jdk
 ```
 
-### Установка Elasticsearc
-
-Для начала получим открытый ключ Elasticsearch GPG в apt
+### Установка Elasticsearch
+Elasticsearch используется для хранения, анализа, поиска по логам.
+Для начала необходимо использовать cURL, инструмент командной строки для передачи данных с помощью URL, для импорта открытого ключа Elasticsearch GPG в APT. Так же используем аргументы -fsSL для подавления всех текущих и возможных ошибок (кроме сбоя сервера), а также, чтобы разрешить cURL подать запрос на другой локации при переадресации. Выведите результаты команды cURL в программу apt-key, которая добавит открытый ключ GPG в APT
 
 ```properties
 curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 ```
 
-Теперь добавим список источников Elasticsearch в директорию `source.list.d`, где `apt` будет искать новые источники
+Затем добавьте список источников Elastic в каталог sources.list.d, где APT будет искать новые источники:
 
 ```properties
 echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
 ```
 
-Обновляем список пакетов и устанавливаем Elasticksearch
+Обновляем список пакетов, чтобы APT мог прочитать новый источник Elastic и устанавливаем Elasticksearch с помощью следующей команды:
 
 ```properties
 sudo apt update
@@ -85,19 +79,25 @@ sudo apt install elasticsearch
 ```
 
 ### Настройка Elasticsearch
+Для настройки Elasticsearch мы отредактируем файлы конфигурации. В Elasticsearch имеется три файла конфигурации:
 
+* elasticsearch.yml для настройки Elasticsearch, главный файл конфигурации
+* jvm.options для настройки виртуальной машины Elasticsearch Java Virtual Machine (JVM)
+* log4j2.properties для настройки журнала Elasticsearch
+
+Открываем файл elasticsearch.yml для изменения конфигураций. Файл elasticsearch.yml предоставляет варианты конфигурации для вашего кластера, узла, пути, памяти, сети, обнаружения и шлюза. Нам необходимо изменить настройки только для хоста сети.
 ```properties
 sudo nano /etc/elasticsearch/elasticsearch.yml
 ```
-
+Для ограничения доступа и повышения безопасности находим строку с указанием network.host и убераем с нее значок комментария, после чего заменяем значение на 0.0.0.0 или localhost, чтобы она выглядела следующим образом:
 `network.host: 0.0.0.0`
-
+Elasticsearch формирует одноузловой кластер:
 `discovery.type: single-node`
-
+Включаем функции безопасности Elasticsearch на узле:
 `xpack.security.enabled: true`
 
 ### Запуск Elasticsearch
-
+Запукаем Elasticsearch с помощью следующих команд:
 ```properties
 sudo systemctl start elasticsearch
 sudo systemctl enable elasticsearch
@@ -107,24 +107,25 @@ sudo systemctl enable elasticsearch
 ```properties
 sudo -u root /usr/share/elasticsearch/bin/elasticsearch-setup-passwords auto
 ```
-
 Сохраняем вывод
 
----
+![elastic](https://user-images.githubusercontent.com/91045595/166099919-21b65f88-cd66-4dcc-9669-dd402a8be0a1.jpg)
+
 
 ## Kibana
 
 ### Установка Kibana
-
+Установим Kibana, которая представляет собой удобную и красивую web панель для работы с логами, с помощью следующей команды:
 ```properties
 sudo apt install kibana
 ```
 
 ### Настройка Kibana
-
+Откроем файл конфигурации:
 ```properties
 sudo nano /etc/kibana/kibana.yml
 ```
+Натроим username и укажем, что Elasticsearch должна работать на порту 9200, а Kibana на 5601:
 
 `elasticsearch.username: "kibana_system"`
 
@@ -133,7 +134,7 @@ sudo nano /etc/kibana/kibana.yml
 `kibana.port: 5601`
 
 ### Запуск Kibana
-
+Запустим Kibana с помощью следующих команд:
 ```properties
 sudo systemctl start kibana
 sudo systemctl enable kibana
@@ -146,25 +147,28 @@ sudo -u root /usr/share/kibana/bin/kibana-keystore create
 sudo -u root /usr/share/kibana/bin/kibana-keystore add elasticsearch.password
 ```
 
-Вписываем пароль, который получили на [этом шаге](#создание-пользователей)
+Вписываем пароль, который получили на создания пользователей
+```properties
+Changed password for user kibana_system
+PASSWORD kibana_system = OZ7w09XTeHBg3rfihAsm
+```
 
----
 
 ## Logstash
 
 ### Установка Logstash
-
+Установим Logstash- сервис для сбора логов и отправки их в Elasticsearch.
 ```properties
 sudo apt install logstash
 ```
 
 ### Настройка Logstash
-
+ОТкроем файл конфигураций:
 ```properties
 sudo nano /etc/logstash/conf.d/logstash.conf
 ```
 
-Вписываем и сохраняем
+Указываем, что принимаем информацию на 5044 порт, формируем функцию, где в дальнейшем будут находиться правила,  описываем передачу данных в Elasticsearch и сохраняем.
 
 ```properties
 input { 
@@ -174,7 +178,7 @@ input {
 }
 
 filter {
-  **Тут будут правила grok**
+  **Место для правил Grok**
 }
 
 output {
@@ -189,20 +193,19 @@ output {
 
 ```
 
-Проверяем синтаксис
+Проверяем синтаксис, чтобы в дальнейшем не появилиь ошибки
 
 ```properties
 sudo -u logstash /usr/share/logstash/bin/logstash --path.settings /etc/logstash -t
 ```
 
 ### Запуск Logstash
+Запускаем Logstash с помощью следующих команд:
 
 ```properties
 sudo systemctl start logstash
 sudo systemctl enable logstash
 ```
-
----
 
 ## Filebeat
 
@@ -217,7 +220,7 @@ sudo apt install filebeat
 ```
 
 ### Настройка Filebeat
-
+Изменяем файл конфигураций:
 ```
 sudo filebeat modules enable system
 sudo nano /etc/filebeat/filebeat.yml
@@ -228,30 +231,42 @@ sudo nano /etc/filebeat/filebeat.yml
 Раскомментируем строчи `output.logstash` и `hosts: ["localhost:5044"]`
 
 Изменим `localhost` на `ip` нашего сервера с ELK
+![elasticOutput](https://user-images.githubusercontent.com/91045595/166100621-15ed5fd9-3402-4d3e-a141-859b971a96cd.jpg)
+![LogstashOutput](https://user-images.githubusercontent.com/91045595/166100623-b61d5d44-15e1-4d57-8c75-1a994f44d3a5.jpg)
+
 
 Проверим конфигурацию `sudo filebeat -e test output`
-
+Так как мы отправляем события в Logstash, то необходимо вручную загрузить конвейеры загрузки. Для этого запустим команду:
 ```properties
 sudo filebeat setup --pipelines --modules system
-sudo filebeat setup --index-management -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["__ELK_IP__:9200"]' -E 'output.elasticsearch.username="elastic"' -E 'output.elasticsearch.password="__elasticpassword__"'
-sudo filebeat setup --index-management -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["__ELK_IP__:9200"]' -E 'output.elasticsearch.username="elastic"' -E 'output.elasticsearch.password="__elasticpassword__"' -E setup.kibana.host=__ELK_IP__:5601
 ```
+Установим index templates для Elasticsearch вручную.
+
+Чтобы загрузить шаблон индекса вручную, запустим команду установки. Требуется подключение к Elasticsearch, но т.к. включен другой вывод, необходимо временно отключить этот вывод и включить Elasticsearch с помощью параметра -E. Отключаем выходные данные Logstash.
+```properties
+sudo filebeat setup --index-management -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["139.59.247.231:9200"]' -E 'output.elasticsearch.username="elastic"' -E 'output.elasticsearch.password="nrRO28jYIplnaEP3JBou"'
+sudo filebeat setup --index-management -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["139.59.247.231:9200"]' -E 'output.elasticsearch.username="elastic"' -E 'output.elasticsearch.password="nrRO28jYIplnaEP3JBou"' -E setup.kibana.host=__ELK_IP__:5601
+```
+139.59.247.231 elk ip
+elastic password- nrRO28jYIplnaEP3JBou
 
 ### Запуск Filebeat
+Запускаем Filebeat с помощью следующих команд:
 
 ```properties
 sudo systemctl start filebeat
 sudo systemctl enable filebeat
-curl -u _username_:_password -XGET 'http://_elk_ip_:9200/filebeat-*/_search?pretty'
+curl -u _username_:_password -XGET 'http://139.59.247.231:9200/filebeat-*/_search?pretty'
 ```
+![ElasticLogs](https://user-images.githubusercontent.com/91045595/166101316-8f53ed7b-950a-4b8f-9291-33a0f3301e93.jpg)
 
----
 
 ## GROK
+Grok-это фильтр внутри Logstash, который используется для разбора неструктурированных данных на что-то структурированное и подлежащее запросу. Он находится поверх регулярного выражения (regex) и использует текстовые шаблоны для сопоставления строк в файлах журналов.
 
 ### Правило 1
 
-Data
+Полученные логи
 
 ```json
 {
