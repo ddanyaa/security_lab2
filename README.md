@@ -69,7 +69,7 @@ Elasticsearch используется для хранения, анализа, 
 curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 ```
 
-Затем добавьте список источников Elastic в каталог sources.list.d, где APT будет искать новые источники:
+Добавим список источников Elastic в каталог sources.list.d, где APT будет искать новые источники:
 
 ```properties
 echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
