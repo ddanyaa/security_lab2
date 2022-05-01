@@ -21,7 +21,7 @@ sudo nano /etc/squid/squid.conf
 include /etc/squid/conf.d/*
 ```
 
-В найденном месте необходимо ниже добавить строчки и поле сохранить измененный файл:
+В найденном месте ниже добавим строчки и поле сохраняем измененный файл:
  ```properties
  auth_param basic program /usr/lib/squid3/basic_ncsa_auth /etc/squid/passwords`
  auth_param basic realm proxy`
@@ -63,7 +63,7 @@ sudo apt install default-jdk
 
 ### Установка Elasticsearch
 Elasticsearch используется для хранения, анализа, поиска по логам.
-Для начала необходимо использовать cURL, инструмент командной строки для передачи данных с помощью URL, для импорта открытого ключа Elasticsearch GPG в APT. Так же используем аргументы -fsSL для подавления всех текущих и возможных ошибок (кроме сбоя сервера), а также, чтобы разрешить cURL подать запрос на другой локации при переадресации. Выведите результаты команды cURL в программу apt-key, которая добавит открытый ключ GPG в APT
+Для начала используем cURL, инструмент командной строки для передачи данных с помощью URL, для импорта открытого ключа Elasticsearch GPG в APT. Так же используем аргументы -fsSL для подавления всех текущих и возможных ошибок (кроме сбоя сервера), а также, чтобы разрешить cURL подать запрос на другой локации при переадресации. Выводим результаты команды cURL в программу apt-key, которая добавит открытый ключ GPG в APT
 
 ```properties
 curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
@@ -172,12 +172,12 @@ sudo -u root /usr/share/kibana/bin/kibana-keystore create
 sudo -u root /usr/share/kibana/bin/kibana-keystore add elasticsearch.password
 ```
 
-Вписываем пароль, который получили на создания пользователей
+Вписываем пароль, который получили при создании пользователей
 ```properties
 Changed password for user kibana_system
 PASSWORD kibana_system = OZ7w09XTeHBg3rfihAsm
 ```
-Зайдем в Elasticsearch, создадим суперпользователя
+Заходим в Elasticsearch, создаем суперпользователя
 
 ![elastic](https://user-images.githubusercontent.com/91045595/166099919-21b65f88-cd66-4dcc-9669-dd402a8be0a1.jpg)
 
@@ -185,13 +185,13 @@ PASSWORD kibana_system = OZ7w09XTeHBg3rfihAsm
 ## Logstash
 
 ### Установка Logstash
-Установим Logstash- сервис для сбора логов и отправки их в Elasticsearch.
+Устанавливаем Logstash- сервис для сбора логов и отправки их в Elasticsearch.
 ```properties
 sudo apt install logstash
 ```
 
 ### Настройка Logstash
-Откроем файл конфигураций:
+Открываем файл конфигураций:
 ```properties
 sudo nano /etc/logstash/conf.d/logstash.conf
 ```
@@ -256,14 +256,14 @@ sudo nano /etc/filebeat/filebeat.yml
 
 Комментируем строчки "output.elasticsearch" и "hosts: ["localhost:9200"]"
 
-Раскомментируем строчи "output.logstash" и "hosts: ["localhost:5044"]"
+Раскомментируем строчки "output.logstash" и "hosts: ["localhost:5044"]"
 
 Изменим localhost на ip нашего сервера с ELK
 ![elasticOutput](https://user-images.githubusercontent.com/91045595/166100621-15ed5fd9-3402-4d3e-a141-859b971a96cd.jpg)
 ![LogstashOutput](https://user-images.githubusercontent.com/91045595/166100623-b61d5d44-15e1-4d57-8c75-1a994f44d3a5.jpg)
 
 
-Проверим конфигурацию "sudo filebeat -e test output"
+Проверяем конфигурацию "sudo filebeat -e test output"
 Так как мы отправляем события в Logstash, то необходимо вручную загрузить конвейеры загрузки. Для этого запустим команду:
 ```properties
 sudo filebeat setup --pipelines --modules system
@@ -385,7 +385,7 @@ Grok
     ],
     "port": [
       "36408"
-    ],
+    ]
   }
 }
 ```
