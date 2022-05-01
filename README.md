@@ -297,9 +297,11 @@ Grok-это фильтр внутри Logstash, который использу�
 
 ```json
 {
-  "message": [
-      "May  1 10:01:37 proxy sshd[87897]: Failed password for root from 49.88.112.76 port 14398 ssh2"
-    ]
+  "fields" : {
+    "message": [
+        "May  1 10:01:37 proxy sshd[87897]: Failed password for root from 49.88.112.76 port 14398 ssh2"
+      ]
+  }
 }
 ```
 
