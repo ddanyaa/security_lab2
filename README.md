@@ -272,11 +272,10 @@ sudo filebeat setup --pipelines --modules system
 
 Чтобы загрузить шаблон индекса вручную, запустим команду установки. Требуется подключение к Elasticsearch, но т.к. включен другой вывод, необходимо временно отключить этот вывод и включить Elasticsearch с помощью параметра -E. Отключаем выходные данные Logstash.
 ```properties
-sudo filebeat setup --index-management -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["139.59.247.231:9200"]' -E 'output.elasticsearch.username="elastic"' -E 'output.elasticsearch.password="nrRO28jYIplnaEP3JBou"'
-sudo filebeat setup --index-management -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["139.59.247.231:9200"]' -E 'output.elasticsearch.username="elastic"' -E 'output.elasticsearch.password="nrRO28jYIplnaEP3JBou"' -E setup.kibana.host=__ELK_IP__:5601
+sudo filebeat setup --index-management -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["139.59.247.231:9200"]' -E 'output.elasticsearch.username="dasha"' -E 'output.elasticsearch.password="123456"'
+sudo filebeat setup --index-management -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["139.59.247.231:9200"]' -E 'output.elasticsearch.username="dasha"' -E 'output.elasticsearch.password="123456"' -E setup.kibana.host=139.59.247.231:5601
 ```
 139.59.247.231 elk ip
-elastic password- nrRO28jYIplnaEP3JBou
 
 ### Запуск Filebeat
 Запускаем Filebeat с помощью следующих команд:
@@ -284,7 +283,7 @@ elastic password- nrRO28jYIplnaEP3JBou
 ```properties
 sudo systemctl start filebeat
 sudo systemctl enable filebeat
-curl -u _username_:_password -XGET 'http://139.59.247.231:9200/filebeat-*/_search?pretty'
+curl -u dasha:123456 -XGET 'http://139.59.247.231:9200/filebeat-*/_search?pretty'
 ```
 ![ElasticLogs](https://user-images.githubusercontent.com/91045595/166101316-8f53ed7b-950a-4b8f-9291-33a0f3301e93.jpg)
 
@@ -298,436 +297,45 @@ Grok-это фильтр внутри Logstash, который использу�
 
 ```json
 {
-  "_index": "filebeat-7.17.2-2022.04.26",
-  "_type": "_doc",
-  "_id": "9GE9ZIABAwPEDzUuLjxD",
-  "_version": 41,
-  "_score": 1,
-  "_source": {
-    "ecs": {
-      "version": "1.12.0"
-    },
-    "fileset": {
-      "name": "syslog"
-    },
-    "cloud": {
-      "region": "fra1",
-      "service": {
-        "name": "Droplets"
-      },
-      "instance": {
-        "id": "294566205"
-      },
-      "provider": "digitalocean"
-    },
-    "service": {
-      "type": "system"
-    },
-    "log": {
-      "file": {
-        "path": "/var/log/syslog"
-      },
-      "offset": 1196759
-    },
-    "agent": {
-      "id": "03d66c8a-f7bd-4e32-aee6-3df522db971d",
-      "version": "7.17.2",
-      "name": "proxySquid",
-      "hostname": "proxySquid",
-      "type": "filebeat",
-      "ephemeral_id": "83f329a2-d14b-4a16-bc97-b34aff46e89b"
-    },
-    "event": {
-      "dataset": "system.syslog",
-      "module": "system",
-      "timezone": "+00:00"
-    },
-    "@timestamp": "2022-04-26T04:59:26.695Z",
-    "host": {
-      "os": {
-        "version": "20.04.3 LTS (Focal Fossa)",
-        "platform": "ubuntu",
-        "name": "Ubuntu",
-        "kernel": "5.4.0-97-generic",
-        "codename": "focal",
-        "type": "linux",
-        "family": "debian"
-      },
-      "id": "f39cad9bf667888807d67e1862511af0",
-      "mac": [
-        "e2:41:66:65:3d:cc",
-        "8e:8c:93:42:9a:65"
-      ],
-      "name": "proxySquid",
-      "ip": [
-        "207.154.193.75",
-        "10.19.0.5",
-        "fe80::e041:66ff:fe65:3dcc",
-        "10.114.0.2",
-        "fe80::8c8c:93ff:fe42:9a65"
-      ],
-      "hostname": "proxySquid",
-      "architecture": "x86_64",
-      "containerized": false
-    },
-    "@version": "1",
-    "tags": [
-      "beats_input_codec_plain_applied"
-    ],
-    "message": "Apr 26 04:59:26 proxySquid kernel: [1466719.889974] [UFW BLOCK] IN=eth0 OUT= MAC=e2:41:66:65:3d:cc:fe:00:00:00:01:01:08:00 SRC=73.225.108.52 DST=207.154.193.75 LEN=232 TOS=0x00 PREC=0x00 TTL=47 ID=59840 PROTO=UDP SPT=59281 DPT=51820 LEN=212 ",
-    "input": {
-      "type": "log"
-    }
-  },
-  "fields": {
-    "host.os.name.text": [
-      "Ubuntu"
-    ],
-    "host.hostname": [
-      "proxySquid"
-    ],
-    "host.mac": [
-      "e2:41:66:65:3d:cc",
-      "8e:8c:93:42:9a:65"
-    ],
-    "service.type": [
-      "system"
-    ],
-    "host.ip": [
-      "207.154.193.75",
-      "10.19.0.5",
-      "fe80::e041:66ff:fe65:3dcc",
-      "10.114.0.2",
-      "fe80::8c8c:93ff:fe42:9a65"
-    ],
-    "cloud.instance.id": [
-      "294566205"
-    ],
-    "agent.type": [
-      "filebeat"
-    ],
-    "event.module": [
-      "system"
-    ],
-    "host.os.version": [
-      "20.04.3 LTS (Focal Fossa)"
-    ],
-    "host.os.kernel": [
-      "5.4.0-97-generic"
-    ],
-    "@version": [
-      "1"
-    ],
-    "host.os.name": [
-      "Ubuntu"
-    ],
-    "agent.name": [
-      "proxySquid"
-    ],
-    "host.name": [
-      "proxySquid"
-    ],
-    "host.id": [
-      "f39cad9bf667888807d67e1862511af0"
-    ],
-    "event.timezone": [
-      "+00:00"
-    ],
-    "host.os.type": [
-      "linux"
-    ],
-    "cloud.region": [
-      "fra1"
-    ],
-    "fileset.name": [
-      "syslog"
-    ],
-    "host.os.codename": [
-      "focal"
-    ],
-    "input.type": [
-      "log"
-    ],
-    "log.offset": [
-      1196759
-    ],
-    "agent.hostname": [
-      "proxySquid"
-    ],
-    "message": [
-      "Apr 26 04:59:26 proxySquid kernel: [1466719.889974] [UFW BLOCK] IN=eth0 OUT= MAC=e2:41:66:65:3d:cc:fe:00:00:00:01:01:08:00 SRC=73.225.108.52 DST=207.154.193.75 LEN=232 TOS=0x00 PREC=0x00 TTL=47 ID=59840 PROTO=UDP SPT=59281 DPT=51820 LEN=212 "
-    ],
-    "tags": [
-      "beats_input_codec_plain_applied"
-    ],
-    "host.architecture": [
-      "x86_64"
-    ],
-    "cloud.provider": [
-      "digitalocean"
-    ],
-    "@timestamp": [
-      "2022-04-26T04:59:26.695Z"
-    ],
-    "agent.id": [
-      "03d66c8a-f7bd-4e32-aee6-3df522db971d"
-    ],
-    "cloud.service.name": [
-      "Droplets"
-    ],
-    "ecs.version": [
-      "1.12.0"
-    ],
-    "host.containerized": [
-      false
-    ],
-    "host.os.platform": [
-      "ubuntu"
-    ],
-    "log.file.path": [
-      "/var/log/syslog"
-    ],
-    "agent.ephemeral_id": [
-      "83f329a2-d14b-4a16-bc97-b34aff46e89b"
-    ],
-    "agent.version": [
-      "7.17.2"
-    ],
-    "host.os.family": [
-      "debian"
-    ],
-    "event.dataset": [
-      "system.syslog"
+  "message": [
+      "May  1 10:01:37 proxy sshd[87897]: Failed password for root from 49.88.112.76 port 14398 ssh2"
     ]
-  }
 }
 ```
 
 Grok
 ```
-%{SYSLOGTIMESTAMP:time} %{WORD:server_name} %{WORD:service}: \[%{DATA}\] \[UFW BLOCK\] IN=%{WORD:in} OUT=%{GREEDYDATA:out} MAC=%{GREEDYDATA:mac} SRC=%{IP:src_ip} DST=%{IP:dst_ip}
+%{SYSLOGTIMESTAMP} %{WORD:server_name} %{WORD:service_name}\[%{NUMBER:pid}\]: Failed password for %{WORD:user_name} from %{IP:source_ip} port %{NUMBER:port}
 ```
 
 New Data
 
 ```json
 {
-  "_index": "filebeat-7.17.2-2022.04.27",
-  "_type": "_doc",
-  "_id": "KWFKaYABAwPEDzUuUWtZ",
-  "_version": 1,
-  "_score": 1,
-  "_source": {
-    "log": {
-      "offset": 899071,
-      "file": {
-        "path": "/var/log/syslog"
-      }
-    },
-    "event": {
-      "dataset": "system.syslog",
-      "timezone": "+00:00",
-      "module": "system"
-    },
-    "host": {
-      "id": "f39cad9bf667888807d67e1862511af0",
-      "architecture": "x86_64",
-      "ip": [
-        "207.154.193.75",
-        "10.19.0.5",
-        "fe80::e041:66ff:fe65:3dcc",
-        "10.114.0.2",
-        "fe80::8c8c:93ff:fe42:9a65"
-      ],
-      "name": "proxySquid",
-      "mac": [
-        "e2:41:66:65:3d:cc",
-        "8e:8c:93:42:9a:65"
-      ],
-      "hostname": "proxySquid",
-      "containerized": false,
-      "os": {
-        "family": "debian",
-        "version": "20.04.3 LTS (Focal Fossa)",
-        "kernel": "5.4.0-97-generic",
-        "name": "Ubuntu",
-        "codename": "focal",
-        "platform": "ubuntu",
-        "type": "linux"
-      }
-    },
-    "server_name": "proxySquid",
-    "src_ip": "91.240.118.246",
-    "@timestamp": "2022-04-27T04:31:58.713Z",
-    "@version": "1",
-    "input": {
-      "type": "log"
-    },
-    "cloud": {
-      "service": {
-        "name": "Droplets"
-      },
-      "instance": {
-        "id": "294566205"
-      },
-      "provider": "digitalocean",
-      "region": "fra1"
-    },
-    "dst_ip": "207.154.193.75",
-    "agent": {
-      "id": "03d66c8a-f7bd-4e32-aee6-3df522db971d",
-      "version": "7.17.2",
-      "ephemeral_id": "83f329a2-d14b-4a16-bc97-b34aff46e89b",
-      "name": "proxySquid",
-      "hostname": "proxySquid",
-      "type": "filebeat"
-    },
-    "service": {
-      "type": "system"
-    },
-    "ecs": {
-      "version": "1.12.0"
-    },
-    "fileset": {
-      "name": "syslog"
-    },
-    "in": "eth0",
-    "mac": "e2:41:66:65:3d:cc:fe:00:00:00:01:01:08:00",
-    "tags": [
-      "beats_input_codec_plain_applied"
-    ]
-  },
   "fields": {
     "server_name": [
-      "proxySquid"
+      "proxy"
     ],
-    "host.os.name.text": [
-      "Ubuntu"
+    "user_name": [
+      "root"
     ],
-    "host.hostname": [
-      "proxySquid"
+    "pid": [
+      "87897"
     ],
-    "host.mac": [
-      "e2:41:66:65:3d:cc",
-      "8e:8c:93:42:9a:65"
+    "source_ip": [
+      "49.88.112.76"
     ],
-    "mac": [
-      "e2:41:66:65:3d:cc:fe:00:00:00:01:01:08:00"
+    "service_name": [
+      "sshd"
     ],
-    "dst_ip": [
-      "207.154.193.75"
-    ],
-    "src_ip": [
-      "91.240.118.246"
-    ],
-    "service.type": [
-      "system"
-    ],
-    "host.ip": [
-      "207.154.193.75",
-      "10.19.0.5",
-      "fe80::e041:66ff:fe65:3dcc",
-      "10.114.0.2",
-      "fe80::8c8c:93ff:fe42:9a65"
-    ],
-    "cloud.instance.id": [
-      "294566205"
-    ],
-    "agent.type": [
-      "filebeat"
-    ],
-    "event.module": [
-      "system"
-    ],
-    "host.os.version": [
-      "20.04.3 LTS (Focal Fossa)"
-    ],
-    "host.os.kernel": [
-      "5.4.0-97-generic"
-    ],
-    "@version": [
-      "1"
-    ],
-    "host.os.name": [
-      "Ubuntu"
-    ],
-    "agent.name": [
-      "proxySquid"
-    ],
-    "host.name": [
-      "proxySquid"
-    ],
-    "host.id": [
-      "f39cad9bf667888807d67e1862511af0"
-    ],
-    "event.timezone": [
-      "+00:00"
-    ],
-    "host.os.type": [
-      "linux"
-    ],
-    "cloud.region": [
-      "fra1"
-    ],
-    "in": [
-      "eth0"
-    ],
-    "fileset.name": [
-      "syslog"
-    ],
-    "host.os.codename": [
-      "focal"
-    ],
-    "input.type": [
-      "log"
-    ],
-    "log.offset": [
-      899071
-    ],
-    "agent.hostname": [
-      "proxySquid"
+    "message": [
+      "May  1 10:01:37 proxy sshd[87897]: Failed password for root from 49.88.112.76 port 14398 ssh2"
     ],
     "tags": [
       "beats_input_codec_plain_applied"
     ],
-    "host.architecture": [
-      "x86_64"
-    ],
-    "cloud.provider": [
-      "digitalocean"
-    ],
-    "@timestamp": [
-      "2022-04-27T04:31:58.713Z"
-    ],
-    "agent.id": [
-      "03d66c8a-f7bd-4e32-aee6-3df522db971d"
-    ],
-    "cloud.service.name": [
-      "Droplets"
-    ],
-    "ecs.version": [
-      "1.12.0"
-    ],
-    "host.containerized": [
-      false
-    ],
-    "host.os.platform": [
-      "ubuntu"
-    ],
-    "log.file.path": [
-      "/var/log/syslog"
-    ],
-    "agent.ephemeral_id": [
-      "83f329a2-d14b-4a16-bc97-b34aff46e89b"
-    ],
-    "agent.version": [
-      "7.17.2"
-    ],
-    "host.os.family": [
-      "debian"
-    ],
-    "event.dataset": [
-      "system.syslog"
+    "port": [
+      "14398"
     ]
   }
 }
