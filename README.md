@@ -308,7 +308,7 @@ Grok
 %{SYSLOGTIMESTAMP} %{WORD:server_name} %{WORD:service_name}\[%{NUMBER:pid}\]: Failed password for %{WORD:user_name} from %{IP:source_ip} port %{NUMBER:port}
 ```
 
-New Data
+Новые полученные логи
 
 ```json
 {
@@ -344,893 +344,94 @@ New Data
 
 ### Правило 2
 
-Data
+Полученные логи
 
 ```json
 {
-  "_index": "filebeat-7.17.2-2022.04.26",
-  "_type": "_doc",
-  "_id": "-mHZZIABAwPEDzUua0Gc",
-  "_version": 20,
-  "_score": 1,
-  "_source": {
-    "service": {
-      "type": "system"
-    },
-    "input": {
-      "type": "log"
-    },
-    "host": {
-      "hostname": "proxySquid",
-      "architecture": "x86_64",
-      "mac": [
-        "e2:41:66:65:3d:cc",
-        "8e:8c:93:42:9a:65"
-      ],
-      "id": "f39cad9bf667888807d67e1862511af0",
-      "name": "proxySquid",
-      "containerized": false,
-      "os": {
-        "version": "20.04.3 LTS (Focal Fossa)",
-        "platform": "ubuntu",
-        "family": "debian",
-        "name": "Ubuntu",
-        "kernel": "5.4.0-97-generic",
-        "type": "linux",
-        "codename": "focal"
-      },
-      "ip": [
-        "207.154.193.75",
-        "10.19.0.5",
-        "fe80::e041:66ff:fe65:3dcc",
-        "10.114.0.2",
-        "fe80::8c8c:93ff:fe42:9a65"
-      ]
-    },
-    "agent": {
-      "hostname": "proxySquid",
-      "version": "7.17.2",
-      "id": "03d66c8a-f7bd-4e32-aee6-3df522db971d",
-      "ephemeral_id": "83f329a2-d14b-4a16-bc97-b34aff46e89b",
-      "name": "proxySquid",
-      "type": "filebeat"
-    },
-    "@version": "1",
-    "time": "Apr 26 07:49:56",
-    "fileset": {
-      "name": "auth"
-    },
-    "tags": [
-      "beats_input_codec_plain_applied"
-    ],
-    "log": {
-      "file": {
-        "path": "/var/log/auth.log"
-      },
-      "offset": 470666
-    },
-    "event": {
-      "dataset": "system.auth",
-      "module": "system",
-      "timezone": "+00:00"
-    },
-    "@timestamp": "2022-04-26T07:50:06.370Z",
-    "message": "Apr 26 07:49:56 proxySquid sshd[127302]: Disconnected from authenticating user root 61.177.173.36 port 57131 [preauth]",
-    "ecs": {
-      "version": "1.12.0"
-    },
-    "cloud": {
-      "provider": "digitalocean",
-      "service": {
-        "name": "Droplets"
-      },
-      "instance": {
-        "id": "294566205"
-      },
-      "region": "fra1"
-    }
-  },
   "fields": {
-    "host.os.name.text": [
-      "Ubuntu"
-    ],
-    "host.hostname": [
-      "proxySquid"
-    ],
-    "host.mac": [
-      "e2:41:66:65:3d:cc",
-      "8e:8c:93:42:9a:65"
-    ],
-    "service.type": [
-      "system"
-    ],
-    "host.ip": [
-      "207.154.193.75",
-      "10.19.0.5",
-      "fe80::e041:66ff:fe65:3dcc",
-      "10.114.0.2",
-      "fe80::8c8c:93ff:fe42:9a65"
-    ],
-    "cloud.instance.id": [
-      "294566205"
-    ],
-    "agent.type": [
-      "filebeat"
-    ],
-    "event.module": [
-      "system"
-    ],
-    "host.os.version": [
-      "20.04.3 LTS (Focal Fossa)"
-    ],
-    "host.os.kernel": [
-      "5.4.0-97-generic"
-    ],
-    "@version": [
-      "1"
-    ],
-    "host.os.name": [
-      "Ubuntu"
-    ],
-    "agent.name": [
-      "proxySquid"
-    ],
-    "host.name": [
-      "proxySquid"
-    ],
-    "host.id": [
-      "f39cad9bf667888807d67e1862511af0"
-    ],
-    "event.timezone": [
-      "+00:00"
-    ],
-    "host.os.type": [
-      "linux"
-    ],
-    "cloud.region": [
-      "fra1"
-    ],
-    "fileset.name": [
-      "auth"
-    ],
-    "host.os.codename": [
-      "focal"
-    ],
-    "input.type": [
-      "log"
-    ],
-    "log.offset": [
-      470666
-    ],
-    "agent.hostname": [
-      "proxySquid"
-    ],
     "message": [
-      "Apr 26 07:49:56 proxySquid sshd[127302]: Disconnected from authenticating user root 61.177.173.36 port 57131 [preauth]"
-    ],
-    "tags": [
-      "beats_input_codec_plain_applied"
-    ],
-    "host.architecture": [
-      "x86_64"
-    ],
-    "cloud.provider": [
-      "digitalocean"
-    ],
-    "@timestamp": [
-      "2022-04-26T07:50:06.370Z"
-    ],
-    "agent.id": [
-      "03d66c8a-f7bd-4e32-aee6-3df522db971d"
-    ],
-    "cloud.service.name": [
-      "Droplets"
-    ],
-    "ecs.version": [
-      "1.12.0"
-    ],
-    "host.containerized": [
-      false
-    ],
-    "host.os.platform": [
-      "ubuntu"
-    ],
-    "log.file.path": [
-      "/var/log/auth.log"
-    ],
-    "agent.ephemeral_id": [
-      "83f329a2-d14b-4a16-bc97-b34aff46e89b"
-    ],
-    "agent.version": [
-      "7.17.2"
-    ],
-    "time": [
-      "Apr 26 07:49:56"
-    ],
-    "host.os.family": [
-      "debian"
-    ],
-    "event.dataset": [
-      "system.auth"
+      "Apr 27 02:13:09 proxy sshd[5803]: Received disconnect from 124.156.222.134 port 46278:11: Bye Bye [preauth]"
     ]
   }
 }
 ```
 
 Grok
-
 ```
-%{SYSLOGTIMESTAMP:time} %{WORD:server_name} %{WORD:service_name}\[%{NUMBER}\]: %{DATA:msg} %{IP:ip} port %{NUMBER:port}
+%{SYSLOGTIMESTAMP} %{WORD:server_name} sshd\[%{NUMBER}\]: Received disconnect from %{IP:source_ip} port %{NUMBER:port}:%{DATA}: %{GREEDYDATA:msg}
 ```
 
-New Data
+Новые полученные логи
 
 ```json
 {
-  "_index": "filebeat-7.17.2-2022.04.26",
-  "_type": "_doc",
-  "_id": "tGHAZYABAwPEDzUuLEmu",
-  "_version": 1,
-  "_score": 1,
-  "_source": {
-    "cloud": {
-      "service": {
-        "name": "Droplets"
-      },
-      "instance": {
-        "id": "294566205"
-      },
-      "provider": "digitalocean",
-      "region": "fra1"
-    },
-    "agent": {
-      "hostname": "proxySquid",
-      "version": "7.17.2",
-      "id": "03d66c8a-f7bd-4e32-aee6-3df522db971d",
-      "name": "proxySquid",
-      "type": "filebeat",
-      "ephemeral_id": "83f329a2-d14b-4a16-bc97-b34aff46e89b"
-    },
-    "msg": "Disconnected from authenticating user root",
-    "tags": [
-      "beats_input_codec_plain_applied"
-    ],
-    "server_name": "proxySquid",
-    "event": {
-      "dataset": "system.auth",
-      "timezone": "+00:00",
-      "module": "system"
-    },
-    "service_name": "sshd",
-    "port": "45236",
-    "service": {
-      "type": "system"
-    },
-    "log": {
-      "file": {
-        "path": "/var/log/auth.log"
-      },
-      "offset": 501687
-    },
-    "time": "Apr 26 12:01:58",
-    "ip": "212.20.41.28",
-    "@timestamp": "2022-04-26T12:02:08.722Z",
-    "@version": "1",
-    "fileset": {
-      "name": "auth"
-    },
-    "input": {
-      "type": "log"
-    },
-    "host": {
-      "hostname": "proxySquid",
-      "mac": [
-        "e2:41:66:65:3d:cc",
-        "8e:8c:93:42:9a:65"
-      ],
-      "id": "f39cad9bf667888807d67e1862511af0",
-      "ip": [
-        "207.154.193.75",
-        "10.19.0.5",
-        "fe80::e041:66ff:fe65:3dcc",
-        "10.114.0.2",
-        "fe80::8c8c:93ff:fe42:9a65"
-      ],
-      "architecture": "x86_64",
-      "name": "proxySquid",
-      "containerized": false,
-      "os": {
-        "version": "20.04.3 LTS (Focal Fossa)",
-        "family": "debian",
-        "name": "Ubuntu",
-        "type": "linux",
-        "kernel": "5.4.0-97-generic",
-        "codename": "focal",
-        "platform": "ubuntu"
-      }
-    },
-    "ecs": {
-      "version": "1.12.0"
-    }
-  },
   "fields": {
     "msg": [
-      "Disconnected from authenticating user root"
+      "Bye Bye [preauth]"
     ],
     "server_name": [
-      "proxySquid"
+      "proxy"
     ],
-    "host.os.name.text": [
-      "Ubuntu"
+    "source_ip": [
+      "14.224.148.16"
     ],
-    "host.hostname": [
-      "proxySquid"
-    ],
-    "host.mac": [
-      "e2:41:66:65:3d:cc",
-      "8e:8c:93:42:9a:65"
-    ],
-    "service.type": [
-      "system"
-    ],
-    "host.ip": [
-      "207.154.193.75",
-      "10.19.0.5",
-      "fe80::e041:66ff:fe65:3dcc",
-      "10.114.0.2",
-      "fe80::8c8c:93ff:fe42:9a65"
-    ],
-    "cloud.instance.id": [
-      "294566205"
-    ],
-    "agent.type": [
-      "filebeat"
-    ],
-    "event.module": [
-      "system"
-    ],
-    "host.os.version": [
-      "20.04.3 LTS (Focal Fossa)"
-    ],
-    "host.os.kernel": [
-      "5.4.0-97-generic"
-    ],
-    "@version": [
-      "1"
-    ],
-    "host.os.name": [
-      "Ubuntu"
-    ],
-    "agent.name": [
-      "proxySquid"
-    ],
-    "host.name": [
-      "proxySquid"
-    ],
-    "host.id": [
-      "f39cad9bf667888807d67e1862511af0"
-    ],
-    "event.timezone": [
-      "+00:00"
-    ],
-    "host.os.type": [
-      "linux"
-    ],
-    "cloud.region": [
-      "fra1"
-    ],
-    "service_name": [
-      "sshd"
-    ],
-    "ip": [
-      "212.20.41.28"
-    ],
-    "fileset.name": [
-      "auth"
-    ],
-    "host.os.codename": [
-      "focal"
-    ],
-    "input.type": [
-      "log"
-    ],
-    "log.offset": [
-      501687
-    ],
-    "agent.hostname": [
-      "proxySquid"
+    "message": [
+      "May  1 10:25:28 proxy sshd[88097]: Received disconnect from 14.224.148.16 port 36408:11: Bye Bye [preauth]"
     ],
     "tags": [
       "beats_input_codec_plain_applied"
     ],
-    "host.architecture": [
-      "x86_64"
-    ],
-    "cloud.provider": [
-      "digitalocean"
-    ],
-    "@timestamp": [
-      "2022-04-26T12:02:08.722Z"
-    ],
-    "agent.id": [
-      "03d66c8a-f7bd-4e32-aee6-3df522db971d"
-    ],
-    "cloud.service.name": [
-      "Droplets"
-    ],
     "port": [
-      "45236"
+      "36408"
     ],
-    "ecs.version": [
-      "1.12.0"
-    ],
-    "host.containerized": [
-      false
-    ],
-    "host.os.platform": [
-      "ubuntu"
-    ],
-    "log.file.path": [
-      "/var/log/auth.log"
-    ],
-    "agent.ephemeral_id": [
-      "83f329a2-d14b-4a16-bc97-b34aff46e89b"
-    ],
-    "agent.version": [
-      "7.17.2"
-    ],
-    "time": [
-      "Apr 26 12:01:58"
-    ],
-    "host.os.family": [
-      "debian"
-    ],
-    "event.dataset": [
-      "system.auth"
-    ]
   }
 }
 ```
 
 ### Правило 3
 
-Data
+Полученные логи
 
 ```json
 {
-  "_index": "filebeat-7.17.2-2022.04.27",
-  "_type": "_doc",
-  "_id": "0mFiaYABAwPEDzUuDmu5",
-  "_version": 1,
-  "_score": 1,
-  "_source": {
-    "log": {
-      "offset": 932761,
-      "file": {
-        "path": "/var/log/auth.log"
-      }
-    },
-    "event": {
-      "dataset": "system.auth",
-      "timezone": "+00:00",
-      "module": "system"
-    },
-    "host": {
-      "id": "f39cad9bf667888807d67e1862511af0",
-      "architecture": "x86_64",
-      "ip": [
-        "207.154.193.75",
-        "10.19.0.5",
-        "fe80::e041:66ff:fe65:3dcc",
-        "10.114.0.2",
-        "fe80::8c8c:93ff:fe42:9a65"
-      ],
-      "name": "proxySquid",
-      "mac": [
-        "e2:41:66:65:3d:cc",
-        "8e:8c:93:42:9a:65"
-      ],
-      "hostname": "proxySquid",
-      "os": {
-        "family": "debian",
-        "version": "20.04.3 LTS (Focal Fossa)",
-        "kernel": "5.4.0-97-generic",
-        "name": "Ubuntu",
-        "codename": "focal",
-        "platform": "ubuntu",
-        "type": "linux"
-      },
-      "containerized": false
-    },
-    "@timestamp": "2022-04-27T04:57:49.532Z",
-    "@version": "1",
-    "cloud": {
-      "service": {
-        "name": "Droplets"
-      },
-      "instance": {
-        "id": "294566205"
-      },
-      "provider": "digitalocean",
-      "region": "fra1"
-    },
-    "input": {
-      "type": "log"
-    },
-    "agent": {
-      "id": "03d66c8a-f7bd-4e32-aee6-3df522db971d",
-      "version": "7.17.2",
-      "ephemeral_id": "83f329a2-d14b-4a16-bc97-b34aff46e89b",
-      "name": "proxySquid",
-      "hostname": "proxySquid",
-      "type": "filebeat"
-    },
-    "service": {
-      "type": "system"
-    },
-    "ecs": {
-      "version": "1.12.0"
-    },
-    "fileset": {
-      "name": "auth"
-    },
-    "message": "Apr 27 04:57:48 proxySquid su: FAILED SU (to root) brave on pts/1",
-    "tags": [
-      "beats_input_codec_plain_applied",
-      "_grokparsefailure"
-    ]
-  },
   "fields": {
-    "host.os.name.text": [
-      "Ubuntu"
-    ],
-    "host.hostname": [
-      "proxySquid"
-    ],
-    "host.mac": [
-      "e2:41:66:65:3d:cc",
-      "8e:8c:93:42:9a:65"
-    ],
-    "service.type": [
-      "system"
-    ],
-    "host.ip": [
-      "207.154.193.75",
-      "10.19.0.5",
-      "fe80::e041:66ff:fe65:3dcc",
-      "10.114.0.2",
-      "fe80::8c8c:93ff:fe42:9a65"
-    ],
-    "cloud.instance.id": [
-      "294566205"
-    ],
-    "agent.type": [
-      "filebeat"
-    ],
-    "event.module": [
-      "system"
-    ],
-    "host.os.version": [
-      "20.04.3 LTS (Focal Fossa)"
-    ],
-    "host.os.kernel": [
-      "5.4.0-97-generic"
-    ],
-    "@version": [
-      "1"
-    ],
-    "host.os.name": [
-      "Ubuntu"
-    ],
-    "agent.name": [
-      "proxySquid"
-    ],
-    "host.name": [
-      "proxySquid"
-    ],
-    "host.id": [
-      "f39cad9bf667888807d67e1862511af0"
-    ],
-    "event.timezone": [
-      "+00:00"
-    ],
-    "host.os.type": [
-      "linux"
-    ],
-    "cloud.region": [
-      "fra1"
-    ],
-    "fileset.name": [
-      "auth"
-    ],
-    "host.os.codename": [
-      "focal"
-    ],
-    "input.type": [
-      "log"
-    ],
-    "log.offset": [
-      932761
-    ],
-    "agent.hostname": [
-      "proxySquid"
-    ],
     "message": [
-      "Apr 27 04:57:48 proxySquid su: FAILED SU (to root) brave on pts/1"
-    ],
-    "tags": [
-      "beats_input_codec_plain_applied",
-      "_grokparsefailure"
-    ],
-    "host.architecture": [
-      "x86_64"
-    ],
-    "cloud.provider": [
-      "digitalocean"
-    ],
-    "@timestamp": [
-      "2022-04-27T04:57:49.532Z"
-    ],
-    "agent.id": [
-      "03d66c8a-f7bd-4e32-aee6-3df522db971d"
-    ],
-    "cloud.service.name": [
-      "Droplets"
-    ],
-    "ecs.version": [
-      "1.12.0"
-    ],
-    "host.containerized": [
-      false
-    ],
-    "host.os.platform": [
-      "ubuntu"
-    ],
-    "log.file.path": [
-      "/var/log/auth.log"
-    ],
-    "agent.ephemeral_id": [
-      "83f329a2-d14b-4a16-bc97-b34aff46e89b"
-    ],
-    "agent.version": [
-      "7.17.2"
-    ],
-    "host.os.family": [
-      "debian"
-    ],
-    "event.dataset": [
-      "system.auth"
+      "May  1 10:31:28 proxy sshd[88184]: Disconnected from authenticating user root 165.22.63.216 port 33010 [preauth]"
     ]
   }
 }
 ```
 
 Grok
-
 ```
-%{SYSLOGTIMESTAMP} %{WORD:server_name} %{WORD:command}: %{WORD:status} %{WORD} \(%{GREEDYDATA:desc}\) %{USERNAME:username}
+%{SYSLOGTIMESTAMP} %{WORD:server_name} sshd\[%{NUMBER}\]: %{WORD:status} from authenticating user %{WORD:user_name} %{IP:source_ip} port %{NUMBER:port}
 ```
 
-New Data
+Новые полученные логи
 
 ```json
 {
-  "_index": "filebeat-7.17.2-2022.04.27",
-  "_type": "_doc",
-  "_id": "rGF9aYABAwPEDzUusWyI",
-  "_version": 1,
-  "_score": 1,
-  "_source": {
-    "@timestamp": "2022-04-27T05:28:00.678Z",
-    "fileset": {
-      "name": "auth"
-    },
-    "server_name": "proxySquid",
-    "ecs": {
-      "version": "1.12.0"
-    },
-    "@version": "1",
-    "cloud": {
-      "instance": {
-        "id": "294566205"
-      },
-      "region": "fra1",
-      "provider": "digitalocean",
-      "service": {
-        "name": "Droplets"
-      }
-    },
-    "desc": "to root",
-    "agent": {
-      "id": "03d66c8a-f7bd-4e32-aee6-3df522db971d",
-      "version": "7.17.2",
-      "hostname": "proxySquid",
-      "ephemeral_id": "83f329a2-d14b-4a16-bc97-b34aff46e89b",
-      "name": "proxySquid",
-      "type": "filebeat"
-    },
-    "log": {
-      "file": {
-        "path": "/var/log/auth.log"
-      },
-      "offset": 935824
-    },
-    "input": {
-      "type": "log"
-    },
-    "service": {
-      "type": "system"
-    },
-    "tags": [
-      "beats_input_codec_plain_applied"
-    ],
-    "command": "su",
-    "username": "brave",
-    "event": {
-      "dataset": "system.auth",
-      "module": "system",
-      "timezone": "+00:00"
-    },
-    "host": {
-      "os": {
-        "version": "20.04.3 LTS (Focal Fossa)",
-        "platform": "ubuntu",
-        "family": "debian",
-        "codename": "focal",
-        "name": "Ubuntu",
-        "type": "linux",
-        "kernel": "5.4.0-97-generic"
-      },
-      "mac": [
-        "e2:41:66:65:3d:cc",
-        "8e:8c:93:42:9a:65"
-      ],
-      "ip": [
-        "207.154.193.75",
-        "10.19.0.5",
-        "fe80::e041:66ff:fe65:3dcc",
-        "10.114.0.2",
-        "fe80::8c8c:93ff:fe42:9a65"
-      ],
-      "id": "f39cad9bf667888807d67e1862511af0",
-      "hostname": "proxySquid",
-      "containerized": false,
-      "architecture": "x86_64",
-      "name": "proxySquid"
-    },
-    "status": "FAILED"
-  },
   "fields": {
     "server_name": [
-      "proxySquid"
+      "proxy"
     ],
-    "host.os.name.text": [
-      "Ubuntu"
+    "user_name": [
+      "root"
     ],
-    "host.hostname": [
-      "proxySquid"
+    "source_ip": [
+      "124.194.74.203"
     ],
-    "host.mac": [
-      "e2:41:66:65:3d:cc",
-      "8e:8c:93:42:9a:65"
-    ],
-    "service.type": [
-      "system"
-    ],
-    "host.ip": [
-      "207.154.193.75",
-      "10.19.0.5",
-      "fe80::e041:66ff:fe65:3dcc",
-      "10.114.0.2",
-      "fe80::8c8c:93ff:fe42:9a65"
-    ],
-    "cloud.instance.id": [
-      "294566205"
-    ],
-    "agent.type": [
-      "filebeat"
-    ],
-    "event.module": [
-      "system"
-    ],
-    "host.os.version": [
-      "20.04.3 LTS (Focal Fossa)"
-    ],
-    "host.os.kernel": [
-      "5.4.0-97-generic"
-    ],
-    "@version": [
-      "1"
-    ],
-    "host.os.name": [
-      "Ubuntu"
-    ],
-    "agent.name": [
-      "proxySquid"
-    ],
-    "host.name": [
-      "proxySquid"
-    ],
-    "host.id": [
-      "f39cad9bf667888807d67e1862511af0"
-    ],
-    "event.timezone": [
-      "+00:00"
-    ],
-    "host.os.type": [
-      "linux"
-    ],
-    "cloud.region": [
-      "fra1"
-    ],
-    "fileset.name": [
-      "auth"
-    ],
-    "host.os.codename": [
-      "focal"
-    ],
-    "input.type": [
-      "log"
-    ],
-    "log.offset": [
-      935824
-    ],
-    "agent.hostname": [
-      "proxySquid"
-    ],
-    "command": [
-      "su"
+    "message": [
+      "May  1 10:39:30 proxy sshd[88242]: Disconnected from authenticating user root 124.194.74.203 port 40918 [preauth]"
     ],
     "tags": [
       "beats_input_codec_plain_applied"
     ],
-    "host.architecture": [
-      "x86_64"
-    ],
-    "cloud.provider": [
-      "digitalocean"
-    ],
-    "@timestamp": [
-      "2022-04-27T05:28:00.678Z"
-    ],
-    "agent.id": [
-      "03d66c8a-f7bd-4e32-aee6-3df522db971d"
-    ],
-    "cloud.service.name": [
-      "Droplets"
-    ],
-    "ecs.version": [
-      "1.12.0"
-    ],
-    "host.containerized": [
-      false
-    ],
-    "host.os.platform": [
-      "ubuntu"
-    ],
-    "log.file.path": [
-      "/var/log/auth.log"
-    ],
-    "agent.ephemeral_id": [
-      "83f329a2-d14b-4a16-bc97-b34aff46e89b"
-    ],
-    "agent.version": [
-      "7.17.2"
-    ],
-    "host.os.family": [
-      "debian"
-    ],
-    "event.dataset": [
-      "system.auth"
+    "port": [
+      "40918"
     ],
     "status": [
-      "FAILED"
-    ],
-    "username": [
-      "brave"
-    ],
-    "desc": [
-      "to root"
+      "Disconnected"
     ]
   }
 }
