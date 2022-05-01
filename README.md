@@ -26,10 +26,10 @@ include /etc/squid/conf.d/*
  auth_param basic program /usr/lib/squid3/basic_ncsa_auth /etc/squid/passwords`
  auth_param basic realm proxy`
  acl authenticated proxy_auth REQUIRED`
- acl localnet src  157.245.192.56
+ acl localnet src  176.59.142.172
  http_access allow authenticated
  ```
- 157.245.192.56 - ip адрес локальной машины.
+ 176.59.142.172 - ip адрес локальной машины.
  ![squid](https://user-images.githubusercontent.com/91045595/166097976-d1335246-0b82-45aa-888f-a9216703c2da.jpg)
 
 
