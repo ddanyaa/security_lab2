@@ -103,6 +103,9 @@ Elasticsearch формирует одноузловой кластер: discover
 sudo systemctl start elasticsearch
 sudo systemctl enable elasticsearch
 ```
+
+![image](https://user-images.githubusercontent.com/91045595/166140286-d3e0eb64-d0ba-4ffc-9d88-602c9c973ec1.png)
+
 ### Создание пользователей
 
 ```properties
@@ -159,6 +162,8 @@ kibana.port: 5601
 sudo systemctl start kibana
 sudo systemctl enable kibana
 ```
+
+![image](https://user-images.githubusercontent.com/91045595/166140336-fbfebee1-7426-4aa8-9d95-4458964af2ce.png)
 
 ### Добавление пароля
 
