@@ -17,8 +17,9 @@ sudo nano /etc/squid/squid.conf
 ```
 
 В открытом файле необходимо нажимаем Ctrl+W для того, чтобы чтобы найти необходимое место и прописать:
-
-`include /etc/squid/conf.d/*`.
+```properties
+include /etc/squid/conf.d/*
+```
 
 В найденном месте необходимо ниже добавить строчки и поле сохранить измененный файл:
  ```properties
