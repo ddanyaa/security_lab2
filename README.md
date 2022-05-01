@@ -93,12 +93,9 @@ sudo apt install elasticsearch
 ```properties
 sudo nano /etc/elasticsearch/elasticsearch.yml
 ```
-Для ограничения доступа и повышения безопасности находим строку с указанием network.host и убераем с нее значок комментария, после чего заменяем значение на 0.0.0.0 или localhost, чтобы она выглядела следующим образом:
-`network.host: 0.0.0.0`
-Elasticsearch формирует одноузловой кластер:
-`discovery.type: single-node`
-Включаем функции безопасности Elasticsearch на узле:
-`xpack.security.enabled: true`
+Для ограничения доступа и повышения безопасности находим строку с указанием network.host и убераем с нее значок комментария, после чего заменяем значение на 0.0.0.0 или localhost, чтобы она выглядела следующим образом: "network.host: 0.0.0.0"
+Elasticsearch формирует одноузловой кластер: discovery.type: single-node
+Включаем функции безопасности Elasticsearch на узле: xpack.security.enabled: true
 
 ### Запуск Elasticsearch
 Запукаем Elasticsearch с помощью следующих команд:
