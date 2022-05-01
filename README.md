@@ -108,10 +108,31 @@ sudo systemctl enable elasticsearch
 ```properties
 sudo -u root /usr/share/elasticsearch/bin/elasticsearch-setup-passwords auto
 ```
+
 Сохраняем вывод
 
-![elastic](https://user-images.githubusercontent.com/91045595/166099919-21b65f88-cd66-4dcc-9669-dd402a8be0a1.jpg)
+```
+Changed password for user apm_system
+PASSWORD apm_system = Ff7GWmJSS4X45NewBNZN
 
+Changed password for user kibana_system
+PASSWORD kibana_system = OZ7w09XTeHBg3rfihAsm
+
+Changed password for user kibana
+PASSWORD kibana = OZ7w09XTeHBg3rfihAsm
+
+Changed password for user logstash_system
+PASSWORD logstash_system = AKtK2rmOmkAwWfL17jCh
+
+Changed password for user beats_system
+PASSWORD beats_system = ymq4MVVHCdDIVBohH5l7
+
+Changed password for user remote_monitoring_user
+PASSWORD remote_monitoring_user = RbkSKKbivgZOoq02plda
+
+Changed password for user elastic
+PASSWORD elastic = nrRO28jYIplnaEP3JBou
+```
 
 ## Kibana
 
@@ -151,6 +172,9 @@ sudo -u root /usr/share/kibana/bin/kibana-keystore add elasticsearch.password
 Changed password for user kibana_system
 PASSWORD kibana_system = OZ7w09XTeHBg3rfihAsm
 ```
+Зайдем в Elasticsearch, создадим суперпользователя
+
+![elastic](https://user-images.githubusercontent.com/91045595/166099919-21b65f88-cd66-4dcc-9669-dd402a8be0a1.jpg)
 
 
 ## Logstash
@@ -182,11 +206,11 @@ filter {
 
 output {
   elasticsearch {
-    hosts => ["_elk_ip_:9200"]
+    hosts => ["139.59.247.231:9200"]
     manage_template => false 
     index => "%{[@metadata][beat]}-%{[@metadata[version]}-%{+YYYY.MM.dd}"
-    user => "_username_"
-    password => "_password_"
+    user => "dasha"
+    password => "123456"
   }
 }
 
