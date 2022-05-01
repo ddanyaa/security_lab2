@@ -21,11 +21,14 @@ sudo nano /etc/squid/squid.conf
 `include /etc/squid/conf.d/*`.
 
 В найденном месте необходимо ниже добавить строчки и поле сохранить измененный файл:
- `auth_param basic program /usr/lib/squid3/basic_ncsa_auth /etc/squid/passwords`
- `auth_param basic realm proxy`
- `acl authenticated proxy_auth REQUIRED`
- `acl localnet src *ip_adress*`, где `*ip_adress*` - ip адрес локальной машины.
- `http_access allow authenticated`
+ ```properties
+ auth_param basic program /usr/lib/squid3/basic_ncsa_auth /etc/squid/passwords`
+ auth_param basic realm proxy`
+ acl authenticated proxy_auth REQUIRED`
+ acl localnet src *ip_adress* 
+ http_access allow authenticated
+ ```
+ *ip_adress* - ip адрес локальной машины.
  ![squid](https://user-images.githubusercontent.com/91045595/166097976-d1335246-0b82-45aa-888f-a9216703c2da.jpg)
 
 
