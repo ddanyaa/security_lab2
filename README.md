@@ -127,13 +127,11 @@ sudo apt install kibana
 sudo nano /etc/kibana/kibana.yml
 ```
 Натроим username и укажем, что Elasticsearch должна работать на порту 9200, а Kibana на 5601:
-
-`elasticsearch.username: "kibana_system"`
-
-`elasticsearch.host: "0.0.0.0:9200"`
-
-`kibana.port: 5601`
-
+```properties
+elasticsearch.username: "kibana_system"
+elasticsearch.host: "0.0.0.0:9200"
+kibana.port: 5601
+```
 ### Запуск Kibana
 Запустим Kibana с помощью следующих команд:
 ```properties
@@ -164,7 +162,7 @@ sudo apt install logstash
 ```
 
 ### Настройка Logstash
-ОТкроем файл конфигураций:
+Откроем файл конфигураций:
 ```properties
 sudo nano /etc/logstash/conf.d/logstash.conf
 ```
@@ -227,16 +225,16 @@ sudo filebeat modules enable system
 sudo nano /etc/filebeat/filebeat.yml
 ```
 
-Комментируем строчки `output.elasticsearch` и `hosts: ["localhost:9200"]`
+Комментируем строчки "output.elasticsearch" и "hosts: ["localhost:9200"]"
 
-Раскомментируем строчи `output.logstash` и `hosts: ["localhost:5044"]`
+Раскомментируем строчи "output.logstash" и "hosts: ["localhost:5044"]"
 
-Изменим `localhost` на `ip` нашего сервера с ELK
+Изменим localhost на ip нашего сервера с ELK
 ![elasticOutput](https://user-images.githubusercontent.com/91045595/166100621-15ed5fd9-3402-4d3e-a141-859b971a96cd.jpg)
 ![LogstashOutput](https://user-images.githubusercontent.com/91045595/166100623-b61d5d44-15e1-4d57-8c75-1a994f44d3a5.jpg)
 
 
-Проверим конфигурацию `sudo filebeat -e test output`
+Проверим конфигурацию "sudo filebeat -e test output"
 Так как мы отправляем события в Logstash, то необходимо вручную загрузить конвейеры загрузки. Для этого запустим команду:
 ```properties
 sudo filebeat setup --pipelines --modules system
