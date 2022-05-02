@@ -89,7 +89,7 @@ sudo apt install elasticsearch
 * jvm.options для настройки виртуальной машины Elasticsearch Java Virtual Machine (JVM)
 * log4j2.properties для настройки журнала Elasticsearch
 
-Открываем файл elasticsearch.yml для изменения конфигураций. Файл elasticsearch.yml предоставляет варианты конфигурации для вашего кластера, узла, пути, памяти, сети, обнаружения и шлюза. Нам необходимо изменить настройки только для хоста сети.
+Открываем файл elasticsearch.yml для изменения конфигураций. Файл elasticsearch.yml предоставляет варианты конфигурации для кластера, узла, пути, памяти, сети, обнаружения и шлюза. Нам необходимо изменить настройки только для хоста сети.
 ```properties
 sudo nano /etc/elasticsearch/elasticsearch.yml
 ```
