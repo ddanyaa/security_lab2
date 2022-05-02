@@ -237,7 +237,7 @@ sudo systemctl enable logstash
 
 ## Filebeat
 
-### Установка Filebeat
+### Установка Filebeat - клиент для передачи логов в logstash
 
 Заходим на прокси сервер
 
